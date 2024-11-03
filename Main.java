@@ -93,53 +93,55 @@ public class Main {
                 }
             }
         }
-        
-        int n = a.length;
-        int m = a[0].length;
 
-        for (int col = 0; col < m; col++) {
-            int x = 0, y = col;
-            while (x < n && y >= 0) {
-
-                int num = a[x][y];
-                long factorial = 1;
-
-                if (num < 0) {
-                    System.out.print("Factorial: 0 ");
-                } else {
-                    for (int i = 1; i <= num; i++) {
-                        factorial *= i;
-                    }
-                    System.out.print(factorial + " ");
-                }
-
+        out.println("Массив диагоналей:");
+        for (int colonka = 0; colonka < M; colonka++) {
+            int x = 0, y = colonka;
+            while (x < N && y >= 0) {
+                out.print(a[x][y] + " ");
                 x++;
                 y--;
             }
             out.println();
         }
 
-        for (int row = 1; row < n; row++) {
-            int x = row, y = m - 1;
-            while (x < n && y >= 0) {
-
-                int num = a[x][y];
-                long factorial = 1;
-
-                for (int i = 1; i <= num; i++) {
-                    factorial *= i;
-                }
-                System.out.print(factorial + " ");
-
+        for (int ryad = 1; ryad < N; ryad++) {
+            int x = ryad, y = M - 1;
+            while (x < N && y >= 0) {
+                out.print(a[x][y] + " ");
                 x++;
                 y--;
             }
             out.println();
         }
 
-        for (int i = 0; i < a.length; i++) {
-            for (int j = 0; j < a[i].length; j++) {
-                out.print(" " + a[i][j] + " ");
+        out.println("Массив с факториалами диагоналей:");
+        for (int colonka = 0; colonka < M; colonka++) {
+            int x = 0, y = colonka;
+            while (x < N && y >= 0) {
+                long factorial = 1;
+
+                for (int k = 1; k <= a[x][y]; k++) {
+                    factorial *= k;
+                }
+                out.print(factorial + " ");
+                x++;
+                y--;
+            }
+            out.println();
+        }
+
+        for (int ryad = 1; ryad < N; ryad++) {
+            int x = ryad, y = M - 1;
+            while (x < N && y >= 0) {
+                long factorial = 1;
+
+                for (int k = 1; k <= a[x][y]; k++) {
+                    factorial *= k;
+                }
+                out.print(factorial + " ");
+                x++;
+                y--;
             }
             out.println();
         }
