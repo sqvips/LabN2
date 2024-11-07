@@ -19,44 +19,44 @@ public class Main {
 
         int count = 0;
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < N; i++) { 
             for (int j = 0; j < M; j++) {
-                boolean uni = true;
-                for (int k = 0; k < i; k++) {
+                boolean uni = true; 
+                for (int k = 0; k < i; k++) { 
                     for (int l = 0; l < M; l++) {
-                        if (a[k][l] == a[i][j]) {
+                        if (a[k][l] == a[i][j]) { 
                             uni = false;
                             break;
                         }
                     }
-                    if (!uni) {
+                    if (!uni) { 
                         break;
                     }
                 }
-                for (int l = 0; l < j; l++) {
+                for (int l = 0; l < j; l++) { 
                     if (a[i][l] == a[i][j]) {
                         uni = false;
                         break;
                     }
                 }
-                if (uni)
+                if (uni) 
                     count++;
             }
         }
 
-        out.println("Кол-во уник: " + count);
+        out.println("Кол-во уникальных значений: " + count);
 
         int[] sums = new int[M];
         int[] unicount = new int[M];
 
         for (int j = 0; j < M; j++) {
-            int sum = 0;
+            int sum = 0; 
             int countJ = 0;
 
-            for (int i = 0; i < N; i++) {
+            for (int i = 0; i < N; i++) { 
                 sum += a[i][j];
 
-                boolean isUnique = true;
+                boolean isUnique = true; 
                 for (int k = 0; k < i; k++) {
                     if (a[k][j] == a[i][j]) {
                         isUnique = false;
@@ -74,8 +74,8 @@ public class Main {
         }
 
         for (int i = 0; i < M - 1; i++) {
-            for (int j = 0; j< M - 1 - i; j++) {
-                if (sums[j] > sums[j + 1] || (sums[j] == sums[j + 1] && unicount[j] < unicount[j + 1])) {
+            for (int j = 0; j < M - 1 - i; j++) { 
+                if (sums[j] > sums[j + 1] || (sums[j] == sums[j + 1] && unicount[j] < unicount[j + 1])) { 
 
                     int temp = sums[j];
                     sums[j] = sums[j + 1];
@@ -85,7 +85,7 @@ public class Main {
                     unicount[j] = unicount[j + 1];
                     unicount[j + 1] = tempus;
 
-                    for (int d = 0; d < N; d++) {
+                    for (int d = 0; d < N; d++) { 
                         int temp1 = a[d][j];
                         a[d][j] = a[d][j + 1];
                         a[d][j + 1] = temp1;
@@ -95,12 +95,13 @@ public class Main {
         }
 
         out.println("Массив диагоналей:");
+
         for (int colonka = 0; colonka < M; colonka++) {
             int x = 0, y = colonka;
-            while (x < N && y >= 0) {
+            while (x < N && y >= 0) { 
                 out.print(a[x][y] + " ");
-                x++;
-                y--;
+                x++; 
+                y--; 
             }
             out.println();
         }
@@ -116,15 +117,24 @@ public class Main {
         }
 
         out.println("Массив с факториалами диагоналей:");
-        for (int colonka = 0; colonka < M; colonka++) {
+        for (int colonka = 0; colonka < M; colonka++) { 
             int x = 0, y = colonka;
             while (x < N && y >= 0) {
-                long factorial = 1;
+                if (a[x][y] < 0) {
+                    out.print("# ");
+                } else {
+                    long factorial = 1;
 
-                for (int k = 1; k <= a[x][y]; k++) {
-                    factorial *= k;
+
+                    if (a[x][y] == 0) {
+                        factorial = 1;
+                    } else {
+                        for (int k = 1; k <= a[x][y]; k++) {
+                            factorial *= k;
+                        }
+                    }
+                    out.print(factorial + " ");
                 }
-                out.print(factorial + " ");
                 x++;
                 y--;
             }
@@ -133,13 +143,23 @@ public class Main {
 
         for (int ryad = 1; ryad < N; ryad++) {
             int x = ryad, y = M - 1;
-            while (x < N && y >= 0) {
-                long factorial = 1;
 
-                for (int k = 1; k <= a[x][y]; k++) {
-                    factorial *= k;
+            while (x < N && y >= 0) {
+                if (a[x][y] < 0) {
+                    out.print("# ");
+                } else {
+                    long factorial = 1;
+
+
+                    if (a[x][y] == 0) {
+                        factorial = 1;
+                    } else {
+                        for (int k = 1; k <= a[x][y]; k++) {
+                            factorial *= k;
+                        }
+                    }
+                    out.print(factorial + " ");
                 }
-                out.print(factorial + " ");
                 x++;
                 y--;
             }
